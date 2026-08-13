@@ -4,6 +4,242 @@
     "/home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/LedgerFlow.IntegrationTests.csproj": {}
   },
   "projects": {
+    "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Api/LedgerFlow.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Api/LedgerFlow.Api.csproj",
+        "projectName": "LedgerFlow.Api",
+        "projectPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Api/LedgerFlow.Api.csproj",
+        "packagesPath": "/home/meritdude/.nuget/packages/",
+        "outputPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Api/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/meritdude/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Application/LedgerFlow.Application.csproj": {
+                "projectPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Application/LedgerFlow.Application.csproj"
+              },
+              "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/LedgerFlow.Infrastructure.csproj": {
+                "projectPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/LedgerFlow.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.6.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.129/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Application/LedgerFlow.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Application/LedgerFlow.Application.csproj",
+        "projectName": "LedgerFlow.Application",
+        "projectPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Application/LedgerFlow.Application.csproj",
+        "packagesPath": "/home/meritdude/.nuget/packages/",
+        "outputPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/meritdude/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/LedgerFlow.Domain.csproj": {
+                "projectPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/LedgerFlow.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.129/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/LedgerFlow.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/LedgerFlow.Domain.csproj",
+        "projectName": "LedgerFlow.Domain",
+        "projectPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/LedgerFlow.Domain.csproj",
+        "packagesPath": "/home/meritdude/.nuget/packages/",
+        "outputPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/meritdude/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.129/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/LedgerFlow.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/LedgerFlow.Infrastructure.csproj",
+        "projectName": "LedgerFlow.Infrastructure",
+        "projectPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/LedgerFlow.Infrastructure.csproj",
+        "packagesPath": "/home/meritdude/.nuget/packages/",
+        "outputPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/meritdude/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/LedgerFlow.Domain.csproj": {
+                "projectPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/LedgerFlow.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.129/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/LedgerFlow.IntegrationTests.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -25,7 +261,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Api/LedgerFlow.Api.csproj": {
+                "projectPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Api/LedgerFlow.Api.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

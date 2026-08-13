@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\LedgerFlow.Api\LedgerFlow.Api.csproj" />
+  </ItemGroup>
+
 </Project>

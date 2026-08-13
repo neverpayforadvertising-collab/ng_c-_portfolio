@@ -88,6 +88,42 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "LedgerFlow.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LedgerFlow.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LedgerFlow.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LedgerFlow.Application.dll": {}
+        }
+      },
+      "LedgerFlow.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/LedgerFlow.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LedgerFlow.Domain.dll": {}
+        }
+      },
+      "LedgerFlow.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LedgerFlow.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LedgerFlow.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LedgerFlow.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -439,10 +475,27 @@
         "swashbuckle.aspnetcore.swaggerui.6.6.2.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "LedgerFlow.Application/1.0.0": {
+      "type": "project",
+      "path": "../LedgerFlow.Application/LedgerFlow.Application.csproj",
+      "msbuildProject": "../LedgerFlow.Application/LedgerFlow.Application.csproj"
+    },
+    "LedgerFlow.Domain/1.0.0": {
+      "type": "project",
+      "path": "../LedgerFlow.Domain/LedgerFlow.Domain.csproj",
+      "msbuildProject": "../LedgerFlow.Domain/LedgerFlow.Domain.csproj"
+    },
+    "LedgerFlow.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../LedgerFlow.Infrastructure/LedgerFlow.Infrastructure.csproj",
+      "msbuildProject": "../LedgerFlow.Infrastructure/LedgerFlow.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "LedgerFlow.Application >= 1.0.0",
+      "LedgerFlow.Infrastructure >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.6.2"
     ]
   },
@@ -470,7 +523,14 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Application/LedgerFlow.Application.csproj": {
+              "projectPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Application/LedgerFlow.Application.csproj"
+            },
+            "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/LedgerFlow.Infrastructure.csproj": {
+              "projectPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/LedgerFlow.Infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -1,0 +1,16 @@
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/bin/Debug/net8.0/LedgerFlow.Infrastructure.deps.json
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/bin/Debug/net8.0/LedgerFlow.Infrastructure.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/bin/Debug/net8.0/LedgerFlow.Infrastructure.pdb
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/bin/Debug/net8.0/LedgerFlow.Domain.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/bin/Debug/net8.0/LedgerFlow.Domain.pdb
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/obj/Debug/net8.0/LedgerFlow.Infrastructure.csproj.AssemblyReference.cache
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/obj/Debug/net8.0/LedgerFlow.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/obj/Debug/net8.0/LedgerFlow.Infrastructure.AssemblyInfoInputs.cache
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/obj/Debug/net8.0/LedgerFlow.Infrastructure.AssemblyInfo.cs
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/obj/Debug/net8.0/LedgerFlow.Infrastructure.csproj.CoreCompileInputs.cache
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/obj/Debug/net8.0/LedgerFlow.Infrastructure.sourcelink.json
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/obj/Debug/net8.0/LedgerFlow.Infrastructure.csproj.CopyComplete
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/obj/Debug/net8.0/LedgerFlow.Infrastructure.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/obj/Debug/net8.0/refint/LedgerFlow.Infrastructure.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/obj/Debug/net8.0/LedgerFlow.Infrastructure.pdb
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/obj/Debug/net8.0/ref/LedgerFlow.Infrastructure.dll

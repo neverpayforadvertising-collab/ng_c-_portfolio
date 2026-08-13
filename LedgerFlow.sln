@@ -3,6 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{417AD07C-4A3F-41B6-8A41-5DAB71C6A8A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E321EEBB-25B0-47FB-B2E1-38C733F83566}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LedgerFlow.Domain", "backend\src\LedgerFlow.Domain\LedgerFlow.Domain.csproj", "{4EAB6E15-CD93-4B95-B521-9B54ACC2133F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LedgerFlow.Application", "backend\src\LedgerFlow.Application\LedgerFlow.Application.csproj", "{2C67BD5A-A358-4334-926B-B4B65F1B0AB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LedgerFlow.Infrastructure", "backend\src\LedgerFlow.Infrastructure\LedgerFlow.Infrastructure.csproj", "{0201BAA6-4B0B-48DE-A2FA-F640CD448A48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LedgerFlow.Api", "backend\src\LedgerFlow.Api\LedgerFlow.Api.csproj", "{C165411F-BA27-4D0D-ABA4-0D4F6F651EAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0EBD369D-B04C-4ED6-B364-439C2AF0AE01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LedgerFlow.UnitTests", "backend\tests\LedgerFlow.UnitTests\LedgerFlow.UnitTests.csproj", "{F5D24ADC-E833-4A74-9FFB-09026341438A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LedgerFlow.IntegrationTests", "backend\tests\LedgerFlow.IntegrationTests\LedgerFlow.IntegrationTests.csproj", "{B934B0BD-A890-467F-84E8-E4DDF9EDACAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -10,5 +28,41 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4EAB6E15-CD93-4B95-B521-9B54ACC2133F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EAB6E15-CD93-4B95-B521-9B54ACC2133F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EAB6E15-CD93-4B95-B521-9B54ACC2133F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EAB6E15-CD93-4B95-B521-9B54ACC2133F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C67BD5A-A358-4334-926B-B4B65F1B0AB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C67BD5A-A358-4334-926B-B4B65F1B0AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C67BD5A-A358-4334-926B-B4B65F1B0AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C67BD5A-A358-4334-926B-B4B65F1B0AB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0201BAA6-4B0B-48DE-A2FA-F640CD448A48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0201BAA6-4B0B-48DE-A2FA-F640CD448A48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0201BAA6-4B0B-48DE-A2FA-F640CD448A48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0201BAA6-4B0B-48DE-A2FA-F640CD448A48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C165411F-BA27-4D0D-ABA4-0D4F6F651EAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C165411F-BA27-4D0D-ABA4-0D4F6F651EAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C165411F-BA27-4D0D-ABA4-0D4F6F651EAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C165411F-BA27-4D0D-ABA4-0D4F6F651EAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5D24ADC-E833-4A74-9FFB-09026341438A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5D24ADC-E833-4A74-9FFB-09026341438A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5D24ADC-E833-4A74-9FFB-09026341438A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5D24ADC-E833-4A74-9FFB-09026341438A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B934B0BD-A890-467F-84E8-E4DDF9EDACAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B934B0BD-A890-467F-84E8-E4DDF9EDACAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B934B0BD-A890-467F-84E8-E4DDF9EDACAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B934B0BD-A890-467F-84E8-E4DDF9EDACAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E321EEBB-25B0-47FB-B2E1-38C733F83566} = {417AD07C-4A3F-41B6-8A41-5DAB71C6A8A7}
+		{4EAB6E15-CD93-4B95-B521-9B54ACC2133F} = {E321EEBB-25B0-47FB-B2E1-38C733F83566}
+		{2C67BD5A-A358-4334-926B-B4B65F1B0AB0} = {E321EEBB-25B0-47FB-B2E1-38C733F83566}
+		{0201BAA6-4B0B-48DE-A2FA-F640CD448A48} = {E321EEBB-25B0-47FB-B2E1-38C733F83566}
+		{C165411F-BA27-4D0D-ABA4-0D4F6F651EAA} = {E321EEBB-25B0-47FB-B2E1-38C733F83566}
+		{0EBD369D-B04C-4ED6-B364-439C2AF0AE01} = {417AD07C-4A3F-41B6-8A41-5DAB71C6A8A7}
+		{F5D24ADC-E833-4A74-9FFB-09026341438A} = {0EBD369D-B04C-4ED6-B364-439C2AF0AE01}
+		{B934B0BD-A890-467F-84E8-E4DDF9EDACAA} = {0EBD369D-B04C-4ED6-B364-439C2AF0AE01}
 	EndGlobalSection
 EndGlobal

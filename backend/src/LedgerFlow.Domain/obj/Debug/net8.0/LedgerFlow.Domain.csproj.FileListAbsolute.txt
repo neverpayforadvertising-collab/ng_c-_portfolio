@@ -1,0 +1,12 @@
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/bin/Debug/net8.0/LedgerFlow.Domain.deps.json
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/bin/Debug/net8.0/LedgerFlow.Domain.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/bin/Debug/net8.0/LedgerFlow.Domain.pdb
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/obj/Debug/net8.0/LedgerFlow.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/obj/Debug/net8.0/LedgerFlow.Domain.AssemblyInfoInputs.cache
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/obj/Debug/net8.0/LedgerFlow.Domain.AssemblyInfo.cs
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/obj/Debug/net8.0/LedgerFlow.Domain.csproj.CoreCompileInputs.cache
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/obj/Debug/net8.0/LedgerFlow.Domain.sourcelink.json
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/obj/Debug/net8.0/LedgerFlow.Domain.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/obj/Debug/net8.0/refint/LedgerFlow.Domain.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/obj/Debug/net8.0/LedgerFlow.Domain.pdb
+/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/obj/Debug/net8.0/ref/LedgerFlow.Domain.dll

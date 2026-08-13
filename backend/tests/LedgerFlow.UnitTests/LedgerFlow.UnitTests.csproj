@@ -22,4 +22,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\LedgerFlow.Domain\LedgerFlow.Domain.csproj" />
+    <ProjectReference Include="..\..\src\LedgerFlow.Application\LedgerFlow.Application.csproj" />
+  </ItemGroup>
+
 </Project>
