@@ -12,6 +12,15 @@
 /home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/LedgerFlow.IntegrationTests.dll
 /home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/LedgerFlow.IntegrationTests.pdb
 /home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Relational.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Microsoft.Extensions.Caching.Memory.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Microsoft.Extensions.Logging.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
 /home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Microsoft.OpenApi.dll
 /home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Microsoft.TestPlatform.CoreUtilities.dll
 /home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Microsoft.TestPlatform.PlatformAbstractions.dll
@@ -21,8 +30,10 @@
 /home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Microsoft.TestPlatform.Utilities.dll
 /home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Microsoft.VisualStudio.TestPlatform.Common.dll
 /home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/testhost.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/MySqlConnector.dll
 /home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Newtonsoft.Json.dll
 /home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/NuGet.Frameworks.dll
+/home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Pomelo.EntityFrameworkCore.MySql.dll
 /home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Swashbuckle.AspNetCore.Swagger.dll
 /home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /home/meritdude/Documents/ng_c-_portfolio/backend/tests/LedgerFlow.IntegrationTests/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll

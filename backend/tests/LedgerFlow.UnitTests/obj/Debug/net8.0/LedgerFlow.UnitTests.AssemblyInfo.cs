@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LedgerFlow.UnitTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+971c2632dfefdb8b145195d5de7956673fab82fd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a07fe9297cc6b89d0c610c80ba2c0ef1ab1534d")]
 [assembly: System.Reflection.AssemblyProductAttribute("LedgerFlow.UnitTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LedgerFlow.UnitTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
