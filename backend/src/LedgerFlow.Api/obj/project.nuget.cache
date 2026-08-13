@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "JJWqPib30e+o/UB78pfOuZMzGqnk4kcnV9+HM8t2ffqVLZfXC9XMsk3kb1fWVtZmtdiCAL60aBokCJ2P1NL+FA==",
+  "success": true,
+  "projectFilePath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Api/LedgerFlow.Api.csproj",
+  "expectedPackageFiles": [
+    "/home/meritdude/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/meritdude/.nuget/packages/microsoft.openapi/1.6.14/microsoft.openapi.1.6.14.nupkg.sha512",
+    "/home/meritdude/.nuget/packages/swashbuckle.aspnetcore/6.6.2/swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
+    "/home/meritdude/.nuget/packages/swashbuckle.aspnetcore.swagger/6.6.2/swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
+    "/home/meritdude/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.6.2/swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",
+    "/home/meritdude/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.6.2/swashbuckle.aspnetcore.swaggerui.6.6.2.nupkg.sha512"
+  ],
+  "logs": []
+}
