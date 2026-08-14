@@ -1,5 +1,8 @@
 using LedgerFlow.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using LedgerFlow.Application.Customers.Interfaces;
+using LedgerFlow.Application.Customers.Services;
+using LedgerFlow.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +41,16 @@ builder.Services.AddCors(options =>
         }
     );
 });
+
+
+
+    // builder.Services.AddScoped<
+    //     ICustomerRepository,
+    //     CustomerRepository>();
+
+builder.Services.AddScoped<
+    ICustomerService,
+    CustomerService>();
 
 var app = builder.Build();
 
