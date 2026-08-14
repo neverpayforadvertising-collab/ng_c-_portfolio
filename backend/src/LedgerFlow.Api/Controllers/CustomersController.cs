@@ -1,29 +1,75 @@
+using LedgerFlow.Application.Customers.Dtos;
+using LedgerFlow.Application.Customers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LedgerFlow.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CustomersController : ControllerBase
+public sealed class CustomersController : ControllerBase
 {
-    [HttpGet]
-    public IActionResult GetAll()
+    private readonly ICustomerService _customerService;
+
+    public CustomersController(
+        ICustomerService customerService)
     {
-        return Ok(new[]
+        _customerService = customerService;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<List<CustomerResponse>>> GetAll(
+        CancellationToken cancellationToken)
+    {
+        var customers =
+            await _customerService.GetAllAsync(
+                cancellationToken);
+
+        return Ok(customers);
+    }
+
+    [HttpGet("{id:guid}")]
+    public async Task<ActionResult<CustomerResponse>> GetById(
+        Guid id,
+        CancellationToken cancellationToken)
+    {
+        var customer =
+            await _customerService.GetByIdAsync(
+                id,
+                cancellationToken);
+
+        if (customer is null)
         {
-            new
+            return NotFound();
+        }
+
+        return Ok(customer);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<CustomerResponse>> Create(
+        CreateCustomerRequest request,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            var customer =
+                await _customerService.CreateAsync(
+                    request,
+                    cancellationToken);
+
+            return CreatedAtAction(
+                nameof(GetById),
+                new { id = customer.Id },
+                customer);
+        }
+        catch (InvalidOperationException exception)
+        {
+            return Conflict(new ProblemDetails
             {
-                id = Guid.NewGuid(),
-                companyName = "Acme Consulting LLC",
-                contactName = "John Smith",
-                email = "john@acme.com",
-                phone = "512-555-0100",
-                city = "Austin",
-                state = "TX",
-                country = "US",
-                isActive = true,
-                createdAtUtc = DateTime.UtcNow
-            }
-        });
+                Status = StatusCodes.Status409Conflict,
+                Title = "Customer already exists",
+                Detail = exception.Message
+            });
+        }
     }
 }
