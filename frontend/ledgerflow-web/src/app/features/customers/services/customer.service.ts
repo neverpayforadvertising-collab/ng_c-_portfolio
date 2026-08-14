@@ -1,9 +1,9 @@
-import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Customer } from '../../../shared/models/customer.model';
 import { CreateCustomerRequest } from '../../../shared/models/create-customer-request.model';
+import { Customer } from '../../../shared/models/customer.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,8 @@ export class CustomerService {
     'http://localhost:5182/api/customers';
 
   getAll(): Observable<Customer[]> {
+    console.log('Calling API:', this.baseUrl);
+
     return this.http.get<Customer[]>(this.baseUrl);
   }
 

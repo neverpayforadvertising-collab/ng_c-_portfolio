@@ -6,6 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 
+import { finalize, timeout } from 'rxjs';
+
 import { Customer } from '../../../../shared/models/customer.model';
 import { CustomerService } from '../../services/customer.service';
 
@@ -43,19 +45,33 @@ export class CustomerList implements OnInit {
   }
 
   loadCustomers(): void {
-    this.loading = true;
-    this.errorMessage = '';
+  this.loading = true;
+  this.errorMessage = '';
 
-    this.customerService.getAll().subscribe({
-      next: customers => {
+  this.customerService
+    .getAll()
+    .pipe(
+      timeout(5000),
+      finalize(() => {
+        this.loading = false;
+      })
+    )
+    .subscribe({
+      next: (customers: Customer[]) => {
+        console.log('Customers:', customers);
+
         this.customers = customers;
-        this.loading = false;
       },
-      error: error => {
-        console.error(error);
-        this.errorMessage = 'Unable to load customers.';
-        this.loading = false;
+
+      error: (error: unknown) => {
+        console.error(
+          'Customer API request failed:',
+          error
+        );
+
+        this.errorMessage =
+          'Unable to load customers.';
       }
     });
-  }
+}
 }

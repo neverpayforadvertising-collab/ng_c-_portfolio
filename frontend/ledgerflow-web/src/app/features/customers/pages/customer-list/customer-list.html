@@ -1,3 +1,5 @@
+<!-- <pre>{{ customers | json }}</pre>
+
 <div class="page">
   <div class="page-header">
     <div>
@@ -147,4 +149,307 @@
 
     </div>
   }
+</div>
+
+<h1>Customer route works</h1> -->
+
+<div class="page">
+
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="page-title">
+      <h1>Customers</h1>
+
+      <p>
+        Manage customer accounts and contact information.
+      </p>
+    </div>
+
+    <button
+      mat-flat-button
+      type="button"
+      disabled
+      title="Customer creation will be added next"
+    >
+      <mat-icon>add</mat-icon>
+      Add Customer
+    </button>
+  </div>
+
+
+  <!-- Loading state -->
+  @if (loading) {
+    <div class="state-container">
+      <mat-spinner diameter="42"></mat-spinner>
+
+      <p>
+        Loading customers...
+      </p>
+    </div>
+  }
+
+
+  <!-- Error state -->
+  @else if (errorMessage) {
+    <div class="state-container error-state">
+
+      <mat-icon class="state-icon">
+        error_outline
+      </mat-icon>
+
+      <h2>Unable to load customers</h2>
+
+      <p>
+        {{ errorMessage }}
+      </p>
+
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="loadCustomers()"
+      >
+        <mat-icon>refresh</mat-icon>
+        Try Again
+      </button>
+
+    </div>
+  }
+
+
+  <!-- Empty state -->
+  @else if (customers.length === 0) {
+    <div class="state-container empty-state">
+
+      <mat-icon class="state-icon">
+        people_outline
+      </mat-icon>
+
+      <h2>No customers yet</h2>
+
+      <p>
+        Customer records will appear here once they have been added.
+      </p>
+
+    </div>
+  }
+
+
+  <!-- Customer data -->
+  @else {
+
+    <div class="table-header">
+      <span>
+        {{ customers.length }}
+        {{ customers.length === 1 ? 'customer' : 'customers' }}
+      </span>
+    </div>
+
+    <div class="table-container">
+
+      <table
+        mat-table
+        [dataSource]="customers"
+        class="customer-table"
+      >
+
+        <!-- Company -->
+        <ng-container matColumnDef="companyName">
+
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+          >
+            Company
+          </th>
+
+          <td
+            mat-cell
+            *matCellDef="let customer"
+          >
+            <div class="company-cell">
+
+              <div class="company-avatar">
+                {{ customer.companyName.charAt(0).toUpperCase() }}
+              </div>
+
+              <div>
+                <div class="primary-text">
+                  {{ customer.companyName }}
+                </div>
+
+                <div class="secondary-text">
+                  {{ customer.country }}
+                </div>
+              </div>
+
+            </div>
+          </td>
+
+        </ng-container>
+
+
+        <!-- Contact -->
+        <ng-container matColumnDef="contactName">
+
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+          >
+            Contact
+          </th>
+
+          <td
+            mat-cell
+            *matCellDef="let customer"
+          >
+            {{ customer.contactName }}
+          </td>
+
+        </ng-container>
+
+
+        <!-- Email -->
+        <ng-container matColumnDef="email">
+
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+          >
+            Email
+          </th>
+
+          <td
+            mat-cell
+            *matCellDef="let customer"
+          >
+            <a
+              class="email-link"
+              [href]="'mailto:' + customer.email"
+            >
+              {{ customer.email }}
+            </a>
+          </td>
+
+        </ng-container>
+
+
+        <!-- Location -->
+        <ng-container matColumnDef="location">
+
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+          >
+            Location
+          </th>
+
+          <td
+            mat-cell
+            *matCellDef="let customer"
+          >
+            @if (customer.city || customer.state) {
+
+              {{ customer.city || '' }}
+
+              @if (customer.city && customer.state) {
+                ,
+              }
+
+              {{ customer.state || '' }}
+
+            } @else {
+
+              <span class="muted">
+                —
+              </span>
+
+            }
+          </td>
+
+        </ng-container>
+
+
+        <!-- Status -->
+        <ng-container matColumnDef="status">
+
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+          >
+            Status
+          </th>
+
+          <td
+            mat-cell
+            *matCellDef="let customer"
+          >
+            @if (customer.isActive) {
+
+              <span class="status status-active">
+                <span class="status-dot"></span>
+                Active
+              </span>
+
+            } @else {
+
+              <span class="status status-inactive">
+                <span class="status-dot"></span>
+                Inactive
+              </span>
+
+            }
+          </td>
+
+        </ng-container>
+
+
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            class="actions-column"
+          >
+            Actions
+          </th>
+
+          <td
+            mat-cell
+            *matCellDef="let customer"
+            class="actions-column"
+          >
+            <button
+              mat-icon-button
+              type="button"
+              disabled
+              aria-label="View customer details"
+              title="Customer details will be added next"
+            >
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+
+        </ng-container>
+
+
+        <!-- Table rows -->
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns"
+        ></tr>
+
+        <tr
+          mat-row
+          *matRowDef="
+            let customer;
+            columns: displayedColumns
+          "
+        ></tr>
+
+      </table>
+
+    </div>
+  }
+
 </div>
