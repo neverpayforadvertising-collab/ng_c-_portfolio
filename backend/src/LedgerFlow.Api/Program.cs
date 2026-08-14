@@ -49,6 +49,10 @@ builder.Services.AddCors(options =>
     //     CustomerRepository>();
 
 builder.Services.AddScoped<
+    ICustomerRepository,
+    CustomerRepository>();
+
+builder.Services.AddScoped<
     ICustomerService,
     CustomerService>();
 

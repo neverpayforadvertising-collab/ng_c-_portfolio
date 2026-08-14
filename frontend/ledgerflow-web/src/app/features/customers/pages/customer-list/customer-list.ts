@@ -1,37 +1,95 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatTableModule } from '@angular/material/table';
+import {
+  Component,
+  inject,
+  OnInit,
+  signal
+} from '@angular/core';
 
-import { finalize, timeout } from 'rxjs';
+import {
+  MatButtonModule
+} from '@angular/material/button';
 
-import { Customer } from '../../../../shared/models/customer.model';
-import { CustomerService } from '../../services/customer.service';
+import {
+  MatDialog,
+  MatDialogModule
+} from '@angular/material/dialog';
+
+import {
+  MatIconModule
+} from '@angular/material/icon';
+
+import {
+  MatProgressSpinnerModule
+} from '@angular/material/progress-spinner';
+
+import {
+  MatSnackBar,
+  MatSnackBarModule
+} from '@angular/material/snack-bar';
+
+import {
+  MatTableModule
+} from '@angular/material/table';
+
+import { finalize } from 'rxjs';
+
+import {
+  Customer
+} from '../../../../shared/models/customer.model';
+
+import {
+  CustomerFormDialog
+} from '../../components/customer-form-dialog/customer-form-dialog';
+
+import {
+  CustomerService
+} from '../../services/customer.service';
 
 @Component({
   selector: 'app-customer-list',
+
   standalone: true,
+
   imports: [
     CommonModule,
+
     MatTableModule,
     MatButtonModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
+
   templateUrl: './customer-list.html',
   styleUrl: './customer-list.scss'
 })
-export class CustomerList implements OnInit {
-  private readonly customerService = inject(CustomerService);
+export class CustomerList
+  implements OnInit {
 
-  customers: Customer[] = [];
-  loading = false;
-  errorMessage = '';
+  private readonly customerService =
+    inject(CustomerService);
 
-  displayedColumns: string[] = [
+  private readonly dialog =
+    inject(MatDialog);
+
+  private readonly snackBar =
+    inject(MatSnackBar);
+
+
+  readonly customers =
+    signal<Customer[]>([]);
+
+  readonly loading =
+    signal(false);
+
+  readonly errorMessage =
+    signal('');
+
+
+  readonly displayedColumns = [
     'companyName',
     'contactName',
     'email',
@@ -40,38 +98,81 @@ export class CustomerList implements OnInit {
     'actions'
   ];
 
+
   ngOnInit(): void {
     this.loadCustomers();
   }
 
+
   loadCustomers(): void {
-  this.loading = true;
-  this.errorMessage = '';
+    this.loading.set(true);
 
-  this.customerService
-    .getAll()
-    .pipe(
-      timeout(5000),
-      finalize(() => {
-        this.loading = false;
-      })
-    )
-    .subscribe({
-      next: (customers: Customer[]) => {
-        console.log('Customers:', customers);
+    this.errorMessage.set('');
 
-        this.customers = customers;
-      },
+    this.customerService
+      .getAll()
+      .pipe(
+        finalize(() => {
+          this.loading.set(false);
+        })
+      )
+      .subscribe({
+        next: customers => {
+          this.customers.set(
+            customers
+          );
+        },
 
-      error: (error: unknown) => {
-        console.error(
-          'Customer API request failed:',
-          error
-        );
+        error: error => {
+          console.error(
+            'Unable to load customers:',
+            error
+          );
 
-        this.errorMessage =
-          'Unable to load customers.';
-      }
-    });
-}
+          this.errorMessage.set(
+            'Unable to load customers. Please check the API connection.'
+          );
+        }
+      });
+  }
+
+
+  openAddCustomer(): void {
+    const dialogRef =
+      this.dialog.open(
+        CustomerFormDialog,
+        {
+          width: '720px',
+
+          maxWidth: '95vw',
+
+          maxHeight: '90vh',
+
+          autoFocus:
+            'first-tabbable',
+
+          restoreFocus: true
+        }
+      );
+
+
+    dialogRef
+      .afterClosed()
+      .subscribe({
+        next: (customers: Customer[]) => {
+          this.customers.set(customers);
+        },
+
+        error: (error: unknown) => {
+          console.error(
+            'Unable to load customers:',
+            error
+          );
+
+          this.errorMessage.set(
+            'Unable to load customers. Please check the API connection.'
+          );
+        }
+  });
+  }
 }

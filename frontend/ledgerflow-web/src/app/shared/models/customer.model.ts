@@ -1,6 +1,5 @@
 export interface Customer {
   id: string;
-
   companyName: string;
   contactName: string;
   email: string;
@@ -11,8 +10,6 @@ export interface Customer {
   state?: string;
 
   country: string;
-
   isActive: boolean;
-
   createdAtUtc: string;
 }

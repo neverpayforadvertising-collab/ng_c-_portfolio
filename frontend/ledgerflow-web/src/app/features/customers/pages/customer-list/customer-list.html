@@ -1,162 +1,7 @@
-<!-- <pre>{{ customers | json }}</pre>
-
-<div class="page">
-  <div class="page-header">
-    <div>
-      <h1>Customers</h1>
-      <p>
-        Manage customer accounts and contact information.
-      </p>
-    </div>
-
-    <button mat-flat-button>
-      <mat-icon>add</mat-icon>
-      Add Customer
-    </button>
-  </div>
-
-  @if (loading) {
-    <div class="loading">
-      <mat-spinner diameter="40"></mat-spinner>
-    </div>
-  }
-
-  @if (errorMessage) {
-    <div class="error">
-      {{ errorMessage }}
-    </div>
-  }
-
-  @if (!loading && !errorMessage) {
-    <div class="table-container">
-
-      <table
-        mat-table
-        [dataSource]="customers"
-      >
-
-        <ng-container matColumnDef="companyName">
-
-          <th mat-header-cell *matHeaderCellDef>
-            Company
-          </th>
-
-          <td mat-cell *matCellDef="let customer">
-            {{ customer.companyName }}
-          </td>
-
-        </ng-container>
-
-        <ng-container matColumnDef="contactName">
-
-          <th mat-header-cell *matHeaderCellDef>
-            Contact
-          </th>
-
-          <td mat-cell *matCellDef="let customer">
-            {{ customer.contactName }}
-          </td>
-
-        </ng-container>
-
-        <ng-container matColumnDef="email">
-
-          <th mat-header-cell *matHeaderCellDef>
-            Email
-          </th>
-
-          <td mat-cell *matCellDef="let customer">
-            {{ customer.email }}
-          </td>
-
-        </ng-container>
-
-        <ng-container matColumnDef="location">
-
-          <th mat-header-cell *matHeaderCellDef>
-            Location
-          </th>
-
-          <td mat-cell *matCellDef="let customer">
-
-            {{ customer.city || '-' }}
-
-            @if (customer.state) {
-              , {{ customer.state }}
-            }
-
-          </td>
-
-        </ng-container>
-
-        <ng-container matColumnDef="status">
-
-          <th mat-header-cell *matHeaderCellDef>
-            Status
-          </th>
-
-          <td mat-cell *matCellDef="let customer">
-
-            @if (customer.isActive) {
-              <span class="status active">
-                Active
-              </span>
-            } @else {
-              <span class="status inactive">
-                Inactive
-              </span>
-            }
-
-          </td>
-
-        </ng-container>
-
-        <ng-container matColumnDef="actions">
-
-          <th mat-header-cell *matHeaderCellDef>
-            Actions
-          </th>
-
-          <td mat-cell *matCellDef="let customer">
-
-            <button
-              mat-icon-button
-              aria-label="View customer"
-            >
-              <mat-icon>
-                visibility
-              </mat-icon>
-            </button>
-
-          </td>
-
-        </ng-container>
-
-        <tr
-          mat-header-row
-          *matHeaderRowDef="displayedColumns">
-        </tr>
-
-        <tr
-          mat-row
-          *matRowDef="
-            let row;
-            columns: displayedColumns
-          ">
-        </tr>
-
-      </table>
-
-    </div>
-  }
-</div>
-
-<h1>Customer route works</h1> -->
-
 <div class="page">
 
   <!-- Page header -->
-  <div class="page-header">
+  <header class="page-header">
     <div class="page-title">
       <h1>Customers</h1>
 
@@ -168,39 +13,57 @@
     <button
       mat-flat-button
       type="button"
-      disabled
-      title="Customer creation will be added next"
+      (click)="openAddCustomer()"
+      aria-label="Add a new customer"
     >
-      <mat-icon>add</mat-icon>
+      <mat-icon aria-hidden="true">
+        add
+      </mat-icon>
+
       Add Customer
     </button>
-  </div>
+  </header>
 
 
-  <!-- Loading state -->
-  @if (loading) {
-    <div class="state-container">
-      <mat-spinner diameter="42"></mat-spinner>
+  <!-- Loading -->
+  @if (loading()) {
+    <section
+      class="state-container"
+      aria-live="polite"
+      aria-busy="true"
+    >
+      <mat-spinner
+        diameter="42"
+        aria-label="Loading customers"
+      ></mat-spinner>
 
       <p>
         Loading customers...
       </p>
-    </div>
+    </section>
   }
 
 
-  <!-- Error state -->
-  @else if (errorMessage) {
-    <div class="state-container error-state">
-
-      <mat-icon class="state-icon">
+  <!-- Error -->
+  @else if (errorMessage()) {
+    <section
+      class="state-container error-state"
+      role="alert"
+      aria-live="assertive"
+    >
+      <mat-icon
+        class="state-icon"
+        aria-hidden="true"
+      >
         error_outline
       </mat-icon>
 
-      <h2>Unable to load customers</h2>
+      <h2>
+        Unable to load customers
+      </h2>
 
       <p>
-        {{ errorMessage }}
+        {{ errorMessage() }}
       </p>
 
       <button
@@ -208,248 +71,303 @@
         type="button"
         (click)="loadCustomers()"
       >
-        <mat-icon>refresh</mat-icon>
+        <mat-icon aria-hidden="true">
+          refresh
+        </mat-icon>
+
         Try Again
       </button>
-
-    </div>
+    </section>
   }
 
 
   <!-- Empty state -->
-  @else if (customers.length === 0) {
-    <div class="state-container empty-state">
-
-      <mat-icon class="state-icon">
+  @else if (customers().length === 0) {
+    <section
+      class="state-container empty-state"
+      aria-live="polite"
+    >
+      <mat-icon
+        class="state-icon"
+        aria-hidden="true"
+      >
         people_outline
       </mat-icon>
 
-      <h2>No customers yet</h2>
+      <h2>
+        No customers yet
+      </h2>
 
       <p>
-        Customer records will appear here once they have been added.
+        Add your first customer to start managing
+        accounts, contacts, invoices, and payments.
       </p>
 
-    </div>
+      <button
+        mat-flat-button
+        type="button"
+        (click)="openAddCustomer()"
+      >
+        <mat-icon aria-hidden="true">
+          add
+        </mat-icon>
+
+        Add Customer
+      </button>
+    </section>
   }
 
 
-  <!-- Customer data -->
+  <!-- Customer list -->
   @else {
+    <section
+      class="customer-section"
+      aria-label="Customer list"
+    >
 
-    <div class="table-header">
-      <span>
-        {{ customers.length }}
-        {{ customers.length === 1 ? 'customer' : 'customers' }}
-      </span>
-    </div>
-
-    <div class="table-container">
-
-      <table
-        mat-table
-        [dataSource]="customers"
-        class="customer-table"
-      >
-
-        <!-- Company -->
-        <ng-container matColumnDef="companyName">
-
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-          >
-            Company
-          </th>
-
-          <td
-            mat-cell
-            *matCellDef="let customer"
-          >
-            <div class="company-cell">
-
-              <div class="company-avatar">
-                {{ customer.companyName.charAt(0).toUpperCase() }}
-              </div>
-
-              <div>
-                <div class="primary-text">
-                  {{ customer.companyName }}
-                </div>
-
-                <div class="secondary-text">
-                  {{ customer.country }}
-                </div>
-              </div>
-
-            </div>
-          </td>
-
-        </ng-container>
+      <!-- Table summary -->
+      <div class="table-header">
+        <span class="record-count">
+          {{ customers().length }}
+          {{ customers().length === 1 ? 'customer' : 'customers' }}
+        </span>
+      </div>
 
 
-        <!-- Contact -->
-        <ng-container matColumnDef="contactName">
+      <!-- Table -->
+      <div class="table-container">
 
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-          >
-            Contact
-          </th>
+        <table
+          mat-table
+          [dataSource]="customers()"
+          class="customer-table"
+          aria-label="Customers"
+        >
 
-          <td
-            mat-cell
-            *matCellDef="let customer"
-          >
-            {{ customer.contactName }}
-          </td>
-
-        </ng-container>
-
-
-        <!-- Email -->
-        <ng-container matColumnDef="email">
-
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-          >
-            Email
-          </th>
-
-          <td
-            mat-cell
-            *matCellDef="let customer"
-          >
-            <a
-              class="email-link"
-              [href]="'mailto:' + customer.email"
+          <!-- Company -->
+          <ng-container matColumnDef="companyName">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
             >
-              {{ customer.email }}
-            </a>
-          </td>
+              Company
+            </th>
 
-        </ng-container>
+            <td
+              mat-cell
+              *matCellDef="let customer"
+            >
+              <div class="company-cell">
+
+                <div
+                  class="company-avatar"
+                  aria-hidden="true"
+                >
+                  {{
+                    customer.companyName
+                      ?.charAt(0)
+                      ?.toUpperCase() || '?'
+                  }}
+                </div>
+
+                <div class="company-info">
+                  <div class="primary-text">
+                    {{ customer.companyName }}
+                  </div>
+
+                  <div class="secondary-text">
+                    {{ customer.country }}
+                  </div>
+                </div>
+
+              </div>
+            </td>
+          </ng-container>
 
 
-        <!-- Location -->
-        <ng-container matColumnDef="location">
+          <!-- Contact -->
+          <ng-container matColumnDef="contactName">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+            >
+              Contact
+            </th>
 
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-          >
-            Location
-          </th>
+            <td
+              mat-cell
+              *matCellDef="let customer"
+            >
+              {{ customer.contactName }}
+            </td>
+          </ng-container>
 
-          <td
-            mat-cell
-            *matCellDef="let customer"
-          >
-            @if (customer.city || customer.state) {
 
-              {{ customer.city || '' }}
+          <!-- Email -->
+          <ng-container matColumnDef="email">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+            >
+              Email
+            </th>
 
-              @if (customer.city && customer.state) {
-                ,
+            <td
+              mat-cell
+              *matCellDef="let customer"
+            >
+              <a
+                class="email-link"
+                [href]="'mailto:' + customer.email"
+                [attr.aria-label]="
+                  'Send email to ' + customer.email
+                "
+              >
+                {{ customer.email }}
+              </a>
+            </td>
+          </ng-container>
+
+
+          <!-- Location -->
+          <ng-container matColumnDef="location">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+            >
+              Location
+            </th>
+
+            <td
+              mat-cell
+              *matCellDef="let customer"
+            >
+              @if (customer.city || customer.state) {
+
+                @if (customer.city) {
+                  {{ customer.city }}
+                }
+
+                @if (
+                  customer.city &&
+                  customer.state
+                ) {
+                  ,
+                }
+
+                @if (customer.state) {
+                  {{ customer.state }}
+                }
+
+              } @else {
+                <span
+                  class="muted"
+                  aria-label="Location not provided"
+                >
+                  —
+                </span>
               }
-
-              {{ customer.state || '' }}
-
-            } @else {
-
-              <span class="muted">
-                —
-              </span>
-
-            }
-          </td>
-
-        </ng-container>
+            </td>
+          </ng-container>
 
 
-        <!-- Status -->
-        <ng-container matColumnDef="status">
-
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-          >
-            Status
-          </th>
-
-          <td
-            mat-cell
-            *matCellDef="let customer"
-          >
-            @if (customer.isActive) {
-
-              <span class="status status-active">
-                <span class="status-dot"></span>
-                Active
-              </span>
-
-            } @else {
-
-              <span class="status status-inactive">
-                <span class="status-dot"></span>
-                Inactive
-              </span>
-
-            }
-          </td>
-
-        </ng-container>
-
-
-        <!-- Actions -->
-        <ng-container matColumnDef="actions">
-
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            class="actions-column"
-          >
-            Actions
-          </th>
-
-          <td
-            mat-cell
-            *matCellDef="let customer"
-            class="actions-column"
-          >
-            <button
-              mat-icon-button
-              type="button"
-              disabled
-              aria-label="View customer details"
-              title="Customer details will be added next"
+          <!-- Status -->
+          <ng-container matColumnDef="status">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
             >
-              <mat-icon>visibility</mat-icon>
-            </button>
-          </td>
+              Status
+            </th>
 
-        </ng-container>
+            <td
+              mat-cell
+              *matCellDef="let customer"
+            >
+              @if (customer.isActive) {
+                <span
+                  class="status status-active"
+                  aria-label="Customer status: Active"
+                >
+                  <span
+                    class="status-dot"
+                    aria-hidden="true"
+                  ></span>
+
+                  Active
+                </span>
+              } @else {
+                <span
+                  class="status status-inactive"
+                  aria-label="Customer status: Inactive"
+                >
+                  <span
+                    class="status-dot"
+                    aria-hidden="true"
+                  ></span>
+
+                  Inactive
+                </span>
+              }
+            </td>
+          </ng-container>
 
 
-        <!-- Table rows -->
-        <tr
-          mat-header-row
-          *matHeaderRowDef="displayedColumns"
-        ></tr>
+          <!-- Actions -->
+          <ng-container matColumnDef="actions">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              class="actions-column"
+            >
+              Actions
+            </th>
 
-        <tr
-          mat-row
-          *matRowDef="
-            let customer;
-            columns: displayedColumns
-          "
-        ></tr>
+            <td
+              mat-cell
+              *matCellDef="let customer"
+              class="actions-column"
+            >
+              <button
+                mat-icon-button
+                type="button"
+                disabled
+                [attr.aria-label]="
+                  'View ' +
+                  customer.companyName +
+                  ' customer details'
+                "
+                title="Customer details will be added next"
+              >
+                <mat-icon aria-hidden="true">
+                  visibility
+                </mat-icon>
+              </button>
+            </td>
+          </ng-container>
 
-      </table>
 
-    </div>
+          <!-- Header row -->
+          <tr
+            mat-header-row
+            *matHeaderRowDef="displayedColumns"
+          ></tr>
+
+
+          <!-- Data rows -->
+          <tr
+            mat-row
+            *matRowDef="
+              let customer;
+              columns: displayedColumns
+            "
+          ></tr>
+
+        </table>
+
+      </div>
+
+    </section>
   }
 
 </div>

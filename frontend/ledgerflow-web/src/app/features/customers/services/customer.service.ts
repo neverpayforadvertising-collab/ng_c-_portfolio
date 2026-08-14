@@ -11,13 +11,12 @@ import { Customer } from '../../../shared/models/customer.model';
 export class CustomerService {
   private readonly http = inject(HttpClient);
 
-  private readonly baseUrl =
-    'http://localhost:5182/api/customers';
+  private readonly baseUrl = '/api/customers';
 
   getAll(): Observable<Customer[]> {
-    console.log('Calling API:', this.baseUrl);
-
-    return this.http.get<Customer[]>(this.baseUrl);
+    return this.http.get<Customer[]>(
+      this.baseUrl
+    );
   }
 
   getById(id: string): Observable<Customer> {
