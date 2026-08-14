@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "LedgerFlow.Infrastructure/1.0.0": {
         "dependencies": {
+          "LedgerFlow.Application": "1.0.0",
           "LedgerFlow.Domain": "1.0.0",
           "Pomelo.EntityFrameworkCore.MySql": "8.0.3"
         },
@@ -173,6 +174,14 @@
           }
         }
       },
+      "LedgerFlow.Application/1.0.0": {
+        "dependencies": {
+          "LedgerFlow.Domain": "1.0.0"
+        },
+        "runtime": {
+          "LedgerFlow.Application.dll": {}
+        }
+      },
       "LedgerFlow.Domain/1.0.0": {
         "runtime": {
           "LedgerFlow.Domain.dll": {}
@@ -290,6 +299,11 @@
       "sha512": "sha512-gOHP6v/nFp5V/FgHqv9mZocGqCLGofihEX9dTbLhiXX3H7SJHmGX70GIPUpiqLT+1jIfDxg1PZh9MTUKuk7Kig==",
       "path": "pomelo.entityframeworkcore.mysql/8.0.3",
       "hashPath": "pomelo.entityframeworkcore.mysql.8.0.3.nupkg.sha512"
+    },
+    "LedgerFlow.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "LedgerFlow.Domain/1.0.0": {
       "type": "project",

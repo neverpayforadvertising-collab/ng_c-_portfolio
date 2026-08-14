@@ -211,6 +211,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Application/LedgerFlow.Application.csproj": {
+                "projectPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Application/LedgerFlow.Application.csproj"
+              },
               "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/LedgerFlow.Domain.csproj": {
                 "projectPath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Domain/LedgerFlow.Domain.csproj"
               }

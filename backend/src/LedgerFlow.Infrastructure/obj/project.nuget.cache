@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BTJxChxsN1gLKr8ncsMJ7YWEPhJ2mJ+dQP5x4JgjcYlpcv367tfmPL1akzPKhPcZ4cM+Ii3lk1g1useMRAp+xw==",
+  "dgSpecHash": "wk5kstpHSUOtt4oz+bZD4vwC1GIIbzDkp8jcAlK8MQCsfCbcjdaBCELCv/yJvKKntKUUg639/hrPcHvQeZBzFA==",
   "success": true,
   "projectFilePath": "/home/meritdude/Documents/ng_c-_portfolio/backend/src/LedgerFlow.Infrastructure/LedgerFlow.Infrastructure.csproj",
   "expectedPackageFiles": [

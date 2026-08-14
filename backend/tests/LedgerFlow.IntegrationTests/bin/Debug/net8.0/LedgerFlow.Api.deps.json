@@ -575,6 +575,7 @@
       },
       "LedgerFlow.Infrastructure/1.0.0": {
         "dependencies": {
+          "LedgerFlow.Application": "1.0.0",
           "LedgerFlow.Domain": "1.0.0",
           "Pomelo.EntityFrameworkCore.MySql": "8.0.3"
         },
