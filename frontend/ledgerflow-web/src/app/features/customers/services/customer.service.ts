@@ -12,7 +12,7 @@ export class CustomerService {
   private readonly http = inject(HttpClient);
 
   private readonly baseUrl =
-    'http://localhost:5013/api/customers';
+    'http://localhost:5182/api/customers';
 
   getAll(): Observable<Customer[]> {
     return this.http.get<Customer[]>(this.baseUrl);
