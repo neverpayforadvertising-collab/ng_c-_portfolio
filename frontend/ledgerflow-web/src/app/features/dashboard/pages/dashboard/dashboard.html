@@ -1,0 +1,211 @@
+<div class="dashboard-page">
+
+  <header class="dashboard-header">
+    <div>
+      <h1>
+        Dashboard
+      </h1>
+
+      <p>
+        Financial operations overview.
+      </p>
+    </div>
+  </header>
+
+
+  @if (loading()) {
+
+    <div class="loading">
+      <mat-spinner
+        diameter="40"
+      ></mat-spinner>
+    </div>
+
+  } @else {
+
+    <section class="metrics-grid">
+
+      <mat-card class="metric-card">
+
+        <mat-card-content>
+
+          <div class="metric-header">
+
+            <div>
+              <div class="metric-label">
+                Total Customers
+              </div>
+
+              <div class="metric-value">
+                {{ customers().length }}
+              </div>
+            </div>
+
+            <mat-icon>
+              groups
+            </mat-icon>
+
+          </div>
+
+        </mat-card-content>
+
+      </mat-card>
+
+
+      <mat-card class="metric-card">
+
+        <mat-card-content>
+
+          <div class="metric-header">
+
+            <div>
+              <div class="metric-label">
+                Active Customers
+              </div>
+
+              <div class="metric-value">
+                {{ activeCustomers() }}
+              </div>
+            </div>
+
+            <mat-icon>
+              verified
+            </mat-icon>
+
+          </div>
+
+        </mat-card-content>
+
+      </mat-card>
+
+
+      <mat-card class="metric-card">
+
+        <mat-card-content>
+
+          <div class="metric-header">
+
+            <div>
+              <div class="metric-label">
+                Outstanding
+              </div>
+
+              <div class="metric-value">
+                $0.00
+              </div>
+            </div>
+
+            <mat-icon>
+              request_quote
+            </mat-icon>
+
+          </div>
+
+        </mat-card-content>
+
+      </mat-card>
+
+
+      <mat-card class="metric-card">
+
+        <mat-card-content>
+
+          <div class="metric-header">
+
+            <div>
+              <div class="metric-label">
+                Paid This Month
+              </div>
+
+              <div class="metric-value">
+                $0.00
+              </div>
+            </div>
+
+            <mat-icon>
+              payments
+            </mat-icon>
+
+          </div>
+
+        </mat-card-content>
+
+      </mat-card>
+
+    </section>
+
+
+    <section class="dashboard-grid">
+
+      <mat-card>
+
+        <mat-card-header>
+          <mat-card-title>
+            Recent Customers
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+
+          @for (
+            customer of
+              customers().slice(0, 5);
+            track customer.id
+          ) {
+
+            <div class="recent-customer">
+
+              <div>
+                <div class="customer-name">
+                  {{ customer.companyName }}
+                </div>
+
+                <div class="customer-email">
+                  {{ customer.email }}
+                </div>
+              </div>
+
+              <span>
+                {{ customer.state || customer.country }}
+              </span>
+
+            </div>
+
+          } @empty {
+
+            <p>
+              No customers yet.
+            </p>
+
+          }
+
+        </mat-card-content>
+
+      </mat-card>
+
+
+      <mat-card>
+
+        <mat-card-header>
+          <mat-card-title>
+            Accounts Receivable
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+
+          <div class="placeholder">
+            Invoice analytics will
+            appear here after the
+            Invoice module is added.
+          </div>
+
+        </mat-card-content>
+
+      </mat-card>
+
+    </section>
+
+  }
+
+</div>
