@@ -20,15 +20,15 @@ public static class AppPolicies
     public const string CanRecordPayments =
         nameof(CanRecordPayments);
 
+    public const string CanViewExpenses =
+        nameof(CanViewExpenses);
+
+    public const string CanManageExpenses =
+        nameof(CanManageExpenses);
+
     public const string CanViewReports =
         nameof(CanViewReports);
 
     public const string CanManageUsers =
         nameof(CanManageUsers);
 }
-
-public const string CanViewExpenses =
-    nameof(CanViewExpenses);
-
-public const string CanManageExpenses =
-    nameof(CanManageExpenses);
