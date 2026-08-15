@@ -1,0 +1,90 @@
+services:
+
+  # ==========================================
+  # MySQL
+  # ==========================================
+  db:
+    image: mysql:8.4
+
+    restart: unless-stopped
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?MYSQL_ROOT_PASSWORD is required}
+
+      MYSQL_DATABASE: ledgerflow
+      MYSQL_USER: ledgerflow_user
+
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?MYSQL_PASSWORD is required}
+
+    volumes:
+      - ledgerflow_mysql_data:/var/lib/mysql
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mysqladmin ping -h 127.0.0.1 -u root -p$$MYSQL_ROOT_PASSWORD --silent"
+        ]
+
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+
+  # ==========================================
+  # ASP.NET Core API
+  # ==========================================
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+
+    restart: unless-stopped
+
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: 8080
+
+      ConnectionStrings__DefaultConnection: >-
+        Server=db;
+        Port=3306;
+        Database=ledgerflow;
+        User=ledgerflow_user;
+        Password=${MYSQL_PASSWORD};
+
+      Database__ApplyMigrations: "true"
+
+      SeedAdmin__Email: ${SEED_ADMIN_EMAIL}
+      SeedAdmin__Password: ${SEED_ADMIN_PASSWORD}
+
+      SeedAdmin__DisplayName:
+        ${SEED_ADMIN_DISPLAY_NAME:-LedgerFlow Administrator}
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    expose:
+      - "8080"
+
+
+  # ==========================================
+  # Angular + Nginx
+  # ==========================================
+  frontend:
+    build:
+      context: ./frontend/ledgerflow-web
+      dockerfile: Dockerfile
+
+    restart: unless-stopped
+
+    depends_on:
+      - api
+
+    ports:
+      - "4200:80"
+
+
+volumes:
+  ledgerflow_mysql_data:
