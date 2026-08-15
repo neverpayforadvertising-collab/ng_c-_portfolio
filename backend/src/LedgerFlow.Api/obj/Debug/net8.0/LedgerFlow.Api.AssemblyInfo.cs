@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("1ae03c5e-6669-4862-a5a2-9f92a109c162")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("LedgerFlow.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c0df6c3dd8749882fe09cfc57dafb4c244f0cd1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+26f8ad8bae4188cabce4c50b07a86f07874b4791")]
 [assembly: System.Reflection.AssemblyProductAttribute("LedgerFlow.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LedgerFlow.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

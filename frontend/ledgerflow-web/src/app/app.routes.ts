@@ -1,8 +1,51 @@
-import { Routes } from '@angular/router';
+import {
+  Routes
+} from '@angular/router';
 
-export const routes: Routes = [
+import {
+  authGuard
+} from './core/auth/auth.guard';
+
+import {
+  guestGuard
+} from './core/auth/guest.guard';
+
+
+export const routes:
+  Routes = [
+
+  /*
+   * Public route
+   */
+  {
+    path: 'login',
+
+    canActivate: [
+      guestGuard
+    ],
+
+    loadComponent: () =>
+      import(
+        './features/auth/pages/login/login'
+      ).then(
+        m => m.Login
+      )
+  },
+
+
+  /*
+   * Authenticated application
+   */
   {
     path: '',
+
+    canActivate: [
+      authGuard
+    ],
+
+    canActivateChild: [
+      authGuard
+    ],
 
     loadComponent: () =>
       import(
@@ -15,13 +58,16 @@ export const routes: Routes = [
       {
         path: '',
 
-        redirectTo: 'dashboard',
+        redirectTo:
+          'dashboard',
 
-        pathMatch: 'full'
+        pathMatch:
+          'full'
       },
 
       {
-        path: 'dashboard',
+        path:
+          'dashboard',
 
         loadComponent: () =>
           import(
@@ -32,7 +78,8 @@ export const routes: Routes = [
       },
 
       {
-        path: 'customers',
+        path:
+          'customers',
 
         loadComponent: () =>
           import(
@@ -44,8 +91,11 @@ export const routes: Routes = [
     ]
   },
 
+
   {
     path: '**',
-    redirectTo: 'dashboard'
+
+    redirectTo:
+      'dashboard'
   }
 ];

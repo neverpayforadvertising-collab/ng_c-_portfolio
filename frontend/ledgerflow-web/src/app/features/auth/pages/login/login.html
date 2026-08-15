@@ -1,0 +1,206 @@
+<div class="login-page">
+
+  <mat-card class="login-card">
+
+    <div class="brand">
+      <div class="brand-icon">
+        <mat-icon>
+          account_balance_wallet
+        </mat-icon>
+      </div>
+
+      <div>
+        <div class="brand-name">
+          LedgerFlow
+        </div>
+
+        <div class="brand-subtitle">
+          Financial Operations
+        </div>
+      </div>
+    </div>
+
+
+    <div class="login-heading">
+      <h1>
+        Welcome back
+      </h1>
+
+      <p>
+        Sign in to your LedgerFlow workspace.
+      </p>
+    </div>
+
+
+    @if (errorMessage()) {
+      <div
+        class="login-error"
+        role="alert"
+        aria-live="assertive"
+      >
+        <mat-icon>
+          error_outline
+        </mat-icon>
+
+        <span>
+          {{ errorMessage() }}
+        </span>
+      </div>
+    }
+
+
+    <form
+      [formGroup]="form"
+      (ngSubmit)="submit()"
+    >
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+      >
+        <mat-label>
+          Email address
+        </mat-label>
+
+        <mat-icon matPrefix>
+          mail_outline
+        </mat-icon>
+
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          autocomplete="username"
+          autofocus
+        />
+
+        @if (
+          form.controls.email.touched &&
+          form.controls.email.hasError('required')
+        ) {
+          <mat-error>
+            Email is required.
+          </mat-error>
+        }
+
+        @if (
+          form.controls.email.touched &&
+          form.controls.email.hasError('email')
+        ) {
+          <mat-error>
+            Enter a valid email address.
+          </mat-error>
+        }
+
+      </mat-form-field>
+
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+      >
+
+        <mat-label>
+          Password
+        </mat-label>
+
+        <mat-icon matPrefix>
+          lock_outline
+        </mat-icon>
+
+        <input
+          matInput
+          [type]="
+            hidePassword()
+              ? 'password'
+              : 'text'
+          "
+          formControlName="password"
+          autocomplete="current-password"
+        />
+
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="togglePassword()"
+          [attr.aria-label]="
+            hidePassword()
+              ? 'Show password'
+              : 'Hide password'
+          "
+        >
+          <mat-icon>
+            {{
+              hidePassword()
+                ? 'visibility'
+                : 'visibility_off'
+            }}
+          </mat-icon>
+        </button>
+
+        @if (
+          form.controls.password.touched &&
+          form.controls.password.hasError('required')
+        ) {
+          <mat-error>
+            Password is required.
+          </mat-error>
+        }
+
+      </mat-form-field>
+
+
+      <div class="login-options">
+        <mat-checkbox
+          formControlName="rememberMe"
+        >
+          Remember me
+        </mat-checkbox>
+      </div>
+
+
+      <button
+        mat-flat-button
+        type="submit"
+        class="login-button"
+        [disabled]="
+          submitting() ||
+          form.invalid
+        "
+      >
+
+        @if (submitting()) {
+
+          <span class="button-content">
+            <mat-spinner
+              diameter="18"
+            ></mat-spinner>
+
+            Signing in...
+          </span>
+
+        } @else {
+
+          <span class="button-content">
+            Sign in
+
+            <mat-icon>
+              arrow_forward
+            </mat-icon>
+          </span>
+
+        }
+
+      </button>
+
+    </form>
+
+
+    <div class="login-footer">
+      Secure LedgerFlow workspace
+    </div>
+
+  </mat-card>
+
+</div>

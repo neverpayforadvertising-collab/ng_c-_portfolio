@@ -1,21 +1,36 @@
 import {
   ApplicationConfig,
-  provideBrowserGlobalErrorListeners,
-  // provideZoneChangeDetection
+  inject,
+  provideAppInitializer
 } from '@angular/core';
 
-import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import {
+  provideHttpClient
+} from '@angular/common/http';
+
+import {
+  provideRouter
+} from '@angular/router';
 
 import { routes } from './app.routes';
 
-export const appConfig: ApplicationConfig = {
+import {
+  AuthService
+} from './core/auth/auth.service';
+
+
+export const appConfig:
+  ApplicationConfig = {
+
   providers: [
-    provideBrowserGlobalErrorListeners(),
-    // provideZoneChangeDetection({
-    //   eventCoalescing: true
-    // }),
     provideRouter(routes),
-    provideHttpClient()
+
+    provideHttpClient(),
+
+    provideAppInitializer(
+      () =>
+        inject(AuthService)
+          .initialize()
+    )
   ]
 };

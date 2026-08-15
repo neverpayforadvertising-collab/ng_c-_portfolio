@@ -141,14 +141,75 @@
         </mat-icon>
       </button>
 
-      <button
+      <!-- <button
         mat-icon-button
         aria-label="Account"
       >
         <mat-icon>
           account_circle
         </mat-icon>
-      </button>
+      </button> -->
+      <button
+  mat-button
+  [matMenuTriggerFor]="accountMenu"
+  class="account-button"
+>
+  <mat-icon>
+    account_circle
+  </mat-icon>
+
+  <span>
+    {{
+      auth.user()?.displayName ||
+      auth.user()?.email
+    }}
+  </span>
+
+  <mat-icon>
+    expand_more
+  </mat-icon>
+</button>
+
+
+<mat-menu
+  #accountMenu="matMenu"
+>
+
+  <div
+    class="account-summary"
+    mat-menu-item
+    disabled
+  >
+    <mat-icon>
+      person
+    </mat-icon>
+
+    <span>
+      {{ auth.user()?.email }}
+    </span>
+  </div>
+
+
+  <button
+    mat-menu-item
+    type="button"
+    [disabled]="loggingOut()"
+    (click)="logout()"
+  >
+    <mat-icon>
+      logout
+    </mat-icon>
+
+    <span>
+      {{
+        loggingOut()
+          ? 'Signing out...'
+          : 'Sign out'
+      }}
+    </span>
+  </button>
+
+</mat-menu>
 
     </mat-toolbar>
 
