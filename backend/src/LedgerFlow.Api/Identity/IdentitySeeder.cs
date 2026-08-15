@@ -1,3 +1,4 @@
+using LedgerFlow.Api.Authorization;
 using LedgerFlow.Infrastructure.Identity;
 
 using Microsoft.AspNetCore.Identity;
@@ -6,6 +7,12 @@ namespace LedgerFlow.Api.Identity;
 
 public static class IdentitySeeder
 {
+    private sealed record SeedUser(
+        string ConfigurationPrefix,
+        string Role
+    );
+
+
     public static async Task SeedAsync(
         WebApplication app)
     {
@@ -28,92 +35,214 @@ public static class IdentitySeeder
                     IConfiguration>();
 
 
-        const string adminRole =
-            "Admin";
-
-
-        if (!await roleManager
-            .RoleExistsAsync(adminRole))
+        /*
+         * Ensure every LedgerFlow role exists.
+         */
+        foreach (var role in AppRoles.All)
         {
-            await roleManager.CreateAsync(
-                new IdentityRole(adminRole));
+            await EnsureRoleAsync(
+                roleManager,
+                role
+            );
         }
 
 
-        var email =
-            configuration[
-                "SeedAdmin:Email"];
+        /*
+         * Development users.
+         *
+         * Credentials come from user-secrets,
+         * never source control.
+         */
+        var seedUsers =
+            new[]
+            {
+                new SeedUser(
+                    "SeedAdmin",
+                    AppRoles.Admin
+                ),
 
-        var password =
-            configuration[
-                "SeedAdmin:Password"];
+                new SeedUser(
+                    "SeedAccountant",
+                    AppRoles.Accountant
+                ),
 
-        var displayName =
-            configuration[
-                "SeedAdmin:DisplayName"];
+                new SeedUser(
+                    "SeedViewer",
+                    AppRoles.Viewer
+                )
+            };
 
 
+        foreach (var seedUser in seedUsers)
+        {
+            await EnsureUserAsync(
+                userManager,
+                configuration,
+                seedUser
+            );
+        }
+    }
+
+
+    private static async Task EnsureRoleAsync(
+        RoleManager<IdentityRole> roleManager,
+        string roleName)
+    {
         if (
-            string.IsNullOrWhiteSpace(email) ||
-            string.IsNullOrWhiteSpace(password))
+            await roleManager
+                .RoleExistsAsync(roleName)
+        )
         {
             return;
         }
 
 
-        var existing =
+        var result =
+            await roleManager.CreateAsync(
+                new IdentityRole(roleName)
+            );
+
+
+        EnsureSucceeded(
+            result,
+            $"create role '{roleName}'"
+        );
+    }
+
+
+    private static async Task EnsureUserAsync(
+        UserManager<ApplicationUser> userManager,
+        IConfiguration configuration,
+        SeedUser seedUser)
+    {
+        var prefix =
+            seedUser.ConfigurationPrefix;
+
+        var email =
+            configuration[
+                $"{prefix}:Email"
+            ];
+
+        var password =
+            configuration[
+                $"{prefix}:Password"
+            ];
+
+        var displayName =
+            configuration[
+                $"{prefix}:DisplayName"
+            ];
+
+
+        /*
+         * User is optional.
+         *
+         * If credentials aren't configured,
+         * simply don't create the development user.
+         */
+        if (
+            string.IsNullOrWhiteSpace(email) ||
+            string.IsNullOrWhiteSpace(password)
+        )
+        {
+            return;
+        }
+
+
+        email =
+            email
+                .Trim()
+                .ToLowerInvariant();
+
+
+        var user =
             await userManager
                 .FindByEmailAsync(email);
 
 
-        if (existing is not null)
+        if (user is null)
+        {
+            user =
+                new ApplicationUser
+                {
+                    UserName = email,
+                    Email = email,
+
+                    EmailConfirmed = true,
+
+                    DisplayName =
+                        string.IsNullOrWhiteSpace(
+                            displayName
+                        )
+                            ? email
+                            : displayName.Trim(),
+
+                    CreatedAtUtc =
+                        DateTime.UtcNow
+                };
+
+
+            var result =
+                await userManager.CreateAsync(
+                    user,
+                    password
+                );
+
+
+            EnsureSucceeded(
+                result,
+                $"create user '{email}'"
+            );
+        }
+
+
+        /*
+         * Ensure correct role membership.
+         */
+        if (
+            !await userManager.IsInRoleAsync(
+                user,
+                seedUser.Role
+            )
+        )
+        {
+            var roleResult =
+                await userManager.AddToRoleAsync(
+                    user,
+                    seedUser.Role
+                );
+
+
+            EnsureSucceeded(
+                roleResult,
+                $"assign '{seedUser.Role}' to '{email}'"
+            );
+        }
+    }
+
+
+    private static void EnsureSucceeded(
+        IdentityResult result,
+        string operation)
+    {
+        if (result.Succeeded)
         {
             return;
         }
 
 
-        var user =
-            new ApplicationUser
-            {
-                UserName = email,
-
-                Email = email,
-
-                EmailConfirmed = true,
-
-                DisplayName =
-                    displayName ??
-                    "Administrator",
-
-                CreatedAtUtc =
-                    DateTime.UtcNow
-            };
+        var errors =
+            string.Join(
+                "; ",
+                result.Errors.Select(
+                    error =>
+                        error.Description
+                )
+            );
 
 
-        var result =
-            await userManager
-                .CreateAsync(
-                    user,
-                    password);
-
-
-        if (!result.Succeeded)
-        {
-            var errors =
-                string.Join(
-                    ", ",
-                    result.Errors.Select(
-                        error =>
-                            error.Description));
-
-            throw new InvalidOperationException(
-                $"Unable to seed administrator: {errors}");
-        }
-
-
-        await userManager
-            .AddToRoleAsync(
-                user,
-                adminRole);
+        throw new InvalidOperationException(
+            $"Unable to {operation}: {errors}"
+        );
     }
 }

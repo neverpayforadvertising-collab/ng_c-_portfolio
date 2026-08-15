@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LedgerFlow.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0bb504d4e9537a7b6acd41401893eefe4917f00a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+76ace0571563235d605a6f54303d9b439a0b3225")]
 [assembly: System.Reflection.AssemblyProductAttribute("LedgerFlow.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LedgerFlow.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

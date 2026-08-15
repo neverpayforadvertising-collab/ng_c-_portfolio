@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LedgerFlow.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+51e5baf9efa09398d41c08848c57fe01c1919606")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+76ace0571563235d605a6f54303d9b439a0b3225")]
 [assembly: System.Reflection.AssemblyProductAttribute("LedgerFlow.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LedgerFlow.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

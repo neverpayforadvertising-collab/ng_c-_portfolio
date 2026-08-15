@@ -26,3 +26,9 @@ public static class AppPolicies
     public const string CanManageUsers =
         nameof(CanManageUsers);
 }
+
+public const string CanViewExpenses =
+    nameof(CanViewExpenses);
+
+public const string CanManageExpenses =
+    nameof(CanManageExpenses);

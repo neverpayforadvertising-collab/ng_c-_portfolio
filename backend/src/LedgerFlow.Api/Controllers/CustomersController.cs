@@ -1,11 +1,16 @@
 using LedgerFlow.Application.Customers.Dtos;
 using LedgerFlow.Application.Customers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using LedgerFlow.Api.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LedgerFlow.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize(
+    Policy = AppPolicies.CanViewCustomers
+)]
 public sealed class CustomersController : ControllerBase
 {
     private readonly ICustomerService _customerService;
@@ -46,6 +51,9 @@ public sealed class CustomersController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(
+        Policy = AppPolicies.CanManageCustomers
+    )]
     public async Task<ActionResult<CustomerResponse>> Create(
         CreateCustomerRequest request,
         CancellationToken cancellationToken)

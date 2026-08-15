@@ -2,10 +2,19 @@ import { CommonModule } from '@angular/common';
 
 import {
   Component,
+  computed,
   inject,
   OnInit,
   signal
 } from '@angular/core';
+
+import {
+  AuthService
+} from '../../../../core/auth/auth.service';
+
+import {
+  AppRoles
+} from '../../../../core/auth/app-roles';
 
 import {
   MatButtonModule
@@ -68,6 +77,17 @@ import {
 })
 export class CustomerList
   implements OnInit {
+
+  private readonly authService =
+  inject(AuthService);
+
+  readonly canManageCustomers =
+    computed(() =>
+      this.authService.hasAnyRole(
+        AppRoles.admin,
+        AppRoles.accountant
+      )
+  );
 
   private readonly customerService =
     inject(CustomerService);
@@ -138,6 +158,10 @@ export class CustomerList
 
 
   openAddCustomer(): void {
+
+    if (!this.canManageCustomers()) {
+      return;
+    }
     const dialogRef =
       this.dialog.open(
         CustomerFormDialog,

@@ -43,6 +43,24 @@
     </section>
   }
 
+  @if (canManageCustomers()) {
+    <button
+      mat-flat-button
+      type="button"
+      (click)="openAddCustomer()"
+    >
+      <mat-icon>add</mat-icon>
+      Add Customer
+    </button>
+  }
+
+  @if (!canManageCustomers()) {
+  <span class="muted">
+    Read-only access
+  </span>
+  }
+
+
 
   <!-- Error -->
   @else if (errorMessage()) {

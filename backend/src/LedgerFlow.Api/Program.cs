@@ -1,3 +1,4 @@
+using LedgerFlow.Api.Authorization;
 using LedgerFlow.Api.Identity;
 using LedgerFlow.Application.Customers.Interfaces;
 using LedgerFlow.Application.Customers.Services;
@@ -5,10 +6,16 @@ using LedgerFlow.Infrastructure.Identity;
 using LedgerFlow.Infrastructure.Persistence;
 using LedgerFlow.Infrastructure.Repositories;
 
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+using LedgerFlow.Application.Expenses.Interfaces;
+using LedgerFlow.Application.Expenses.Services;
+using LedgerFlow.Application.Reports.Interfaces;
+using LedgerFlow.Application.Reports.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,15 +48,156 @@ builder.Services.AddControllersWithViews(
             new AutoValidateAntiforgeryTokenAttribute());
     });
 
-builder.Services.AddAuthorization(
-    options =>
-    {
-        options.FallbackPolicy =
-            new AuthorizationPolicyBuilder()
-                .RequireAuthenticatedUser()
-                .Build();
-    });
+// builder.Services.AddAuthorization(
+//     options =>
+//     {
+//         options.FallbackPolicy =
+//             new AuthorizationPolicyBuilder()
+//                 .RequireAuthenticatedUser()
+//                 .Build();
+//     });
 
+builder.Services.AddAuthorization(options =>
+{
+    /*
+     * Every endpoint requires authentication unless
+     * explicitly marked with [AllowAnonymous].
+     */
+    options.AddPolicy(
+    AppPolicies.CanViewExpenses,
+    policy =>
+        policy.RequireRole(
+            AppRoles.Admin,
+            AppRoles.Accountant,
+            AppRoles.Viewer
+        )
+    );
+
+    options.AddPolicy(
+        AppPolicies.CanManageExpenses,
+        policy =>
+            policy.RequireRole(
+                AppRoles.Admin,
+                AppRoles.Accountant
+            )
+    );
+
+
+    options.FallbackPolicy =
+        new AuthorizationPolicyBuilder()
+            .RequireAuthenticatedUser()
+            .Build();
+
+
+    /*
+     * Customers
+     */
+    options.AddPolicy(
+        AppPolicies.CanViewCustomers,
+        policy =>
+            policy.RequireRole(
+                AppRoles.Admin,
+                AppRoles.Accountant,
+                AppRoles.Viewer
+            )
+    );
+
+    options.AddPolicy(
+        AppPolicies.CanManageCustomers,
+        policy =>
+            policy.RequireRole(
+                AppRoles.Admin,
+                AppRoles.Accountant
+            )
+    );
+
+    options.AddPolicy(
+        AppPolicies.CanDeactivateCustomers,
+        policy =>
+            policy.RequireRole(
+                AppRoles.Admin
+            )
+    );
+
+
+    /*
+     * Invoices
+     */
+    options.AddPolicy(
+        AppPolicies.CanViewInvoices,
+        policy =>
+            policy.RequireRole(
+                AppRoles.Admin,
+                AppRoles.Accountant,
+                AppRoles.Viewer
+            )
+    );
+
+    options.AddPolicy(
+        AppPolicies.CanManageInvoices,
+        policy =>
+            policy.RequireRole(
+                AppRoles.Admin,
+                AppRoles.Accountant
+            )
+    );
+
+
+    /*
+     * Payments
+     */
+    options.AddPolicy(
+        AppPolicies.CanRecordPayments,
+        policy =>
+            policy.RequireRole(
+                AppRoles.Admin,
+                AppRoles.Accountant
+            )
+    );
+
+
+    /*
+     * Reports
+     */
+    options.AddPolicy(
+        AppPolicies.CanViewReports,
+        policy =>
+            policy.RequireRole(
+                AppRoles.Admin,
+                AppRoles.Accountant,
+                AppRoles.Viewer
+            )
+    );
+
+
+    /*
+     * Administration
+     */
+    options.AddPolicy(
+        AppPolicies.CanManageUsers,
+        policy =>
+            policy.RequireRole(
+                AppRoles.Admin
+            )
+    );
+});
+
+
+builder.Services.AddScoped<
+    IExpenseRepository,
+    ExpenseRepository>();
+
+builder.Services.AddScoped<
+    IExpenseService,
+    ExpenseService>();
+
+builder.Services.AddScoped<
+    IReportRepository,
+    ReportRepository>();
+
+builder.Services.AddScoped<
+    IReportService,
+    ReportService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

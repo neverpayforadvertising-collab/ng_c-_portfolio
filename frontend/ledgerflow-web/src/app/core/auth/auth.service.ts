@@ -188,6 +188,15 @@ export class AuthService {
     );
   }
 
+  hasAnyRole(...roles: string[]): boolean {
+  const userRoles =
+    this.currentUser()?.roles ?? [];
+
+  return roles.some(
+    role => userRoles.includes(role)
+  );
+}
+
 
   private refreshCsrf():
     Observable<void> {
