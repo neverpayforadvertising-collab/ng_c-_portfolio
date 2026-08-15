@@ -1,8 +1,3 @@
-using LedgerFlow.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
-using LedgerFlow.Application.Customers.Interfaces;
-using LedgerFlow.Application.Customers.Services;
-using LedgerFlow.Infrastructure.Repositories;
 using LedgerFlow.Api.Identity;
 using LedgerFlow.Application.Customers.Interfaces;
 using LedgerFlow.Application.Customers.Services;
@@ -10,10 +5,10 @@ using LedgerFlow.Infrastructure.Identity;
 using LedgerFlow.Infrastructure.Persistence;
 using LedgerFlow.Infrastructure.Repositories;
 
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,7 +29,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Add services to the container.
 
 
-builder.Services.AddControllers(
+builder.Services.AddControllersWithViews(
     options =>
     {
         /*
@@ -114,6 +109,26 @@ builder.Services.AddAuthorization(
                 .Build();
     });
 
+builder.Services
+    .AddIdentity<ApplicationUser, IdentityRole>(options =>
+    {
+        options.Password.RequiredLength = 12;
+        options.Password.RequireDigit = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireNonAlphanumeric = true;
+
+        options.User.RequireUniqueEmail = true;
+
+        options.Lockout.AllowedForNewUsers = true;
+        options.Lockout.MaxFailedAccessAttempts = 5;
+        options.Lockout.DefaultLockoutTimeSpan =
+            TimeSpan.FromMinutes(15);
+
+        options.SignIn.RequireConfirmedEmail = false;
+    })
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
@@ -129,7 +144,7 @@ app.UseCors("AngularDevelopment");
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    // app.UseSwaggerUI();
 }
 
 // app.UseHttpsRedirection();
