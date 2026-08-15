@@ -1,0 +1,151 @@
+.page {
+  padding: 32px;
+}
+
+.page-header {
+  margin-bottom: 24px;
+
+  h1 {
+    margin: 0;
+  }
+
+  p {
+    margin-top: 6px;
+    opacity: 0.7;
+  }
+}
+
+.report-filter {
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  margin-bottom: 24px;
+}
+
+.metrics {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(0, 1fr)
+    );
+
+  gap: 16px;
+
+  margin-bottom: 24px;
+
+  strong {
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 24px;
+  }
+}
+
+.report-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 20px;
+}
+
+.category-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 0;
+
+  border-bottom:
+    1px solid
+    rgba(0, 0, 0, 0.08);
+
+  span {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 12px;
+
+    opacity: 0.6;
+  }
+}
+
+.month-row {
+  display: grid;
+
+  grid-template-columns:
+    90px 1fr 100px;
+
+  gap: 12px;
+
+  align-items: center;
+
+  padding: 10px 0;
+}
+
+.bar-container {
+  height: 8px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background:
+    var(
+      --mat-sys-surface-container-high
+    );
+}
+
+.bar {
+  height: 100%;
+
+  border-radius: inherit;
+
+  background:
+    var(
+      --mat-sys-primary
+    );
+}
+
+.state {
+  display: flex;
+  justify-content: center;
+
+  padding: 60px;
+}
+
+@media (max-width: 900px) {
+  .metrics {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .report-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 20px;
+  }
+
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .report-filter {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

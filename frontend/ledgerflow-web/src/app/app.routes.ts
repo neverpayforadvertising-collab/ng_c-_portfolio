@@ -87,10 +87,31 @@ export const routes:
           ).then(
             m => m.CustomerList
           )
-      }
+      },
+
+        {
+          path: 'expenses',
+
+          loadComponent: () =>
+            import(
+              './features/expenses/pages/expense-list/expense-list'
+            ).then(
+              m => m.ExpenseList
+            )
+        },
+
+        {
+          path: 'reports',
+
+          loadComponent: () =>
+            import(
+              './features/reports/pages/report-overview/report-overview'
+            ).then(
+              m => m.ReportOverview
+            )
+        },
     ]
   },
-
 
   {
     path: '**',

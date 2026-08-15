@@ -1,0 +1,246 @@
+<div class="page">
+
+  <header class="page-header">
+    <div>
+      <h1>Reports</h1>
+
+      <p>
+        Analyze LedgerFlow operating expenses.
+      </p>
+    </div>
+  </header>
+
+
+  <form
+    class="report-filter"
+    [formGroup]="filterForm"
+    (ngSubmit)="loadReport()"
+  >
+
+    <mat-form-field appearance="outline">
+      <mat-label>From</mat-label>
+
+      <input
+        matInput
+        type="date"
+        formControlName="from"
+      />
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>To</mat-label>
+
+      <input
+        matInput
+        type="date"
+        formControlName="to"
+      />
+    </mat-form-field>
+
+
+    <button
+      mat-flat-button
+      type="submit"
+      [disabled]="loading()"
+    >
+      Run Report
+    </button>
+
+  </form>
+
+
+  @if (loading()) {
+
+    <div class="state">
+      <mat-spinner
+        diameter="40"
+      ></mat-spinner>
+    </div>
+
+  } @else if (errorMessage()) {
+
+    <div class="state">
+      {{ errorMessage() }}
+    </div>
+
+  } @else if (report(); as data) {
+
+    <section class="metrics">
+
+      <mat-card>
+        <mat-card-content>
+          <span>
+            Total Expenses
+          </span>
+
+          <strong>
+            {{
+              data.totalExpenses
+                | currency:'USD'
+            }}
+          </strong>
+        </mat-card-content>
+      </mat-card>
+
+
+      <mat-card>
+        <mat-card-content>
+          <span>
+            Transactions
+          </span>
+
+          <strong>
+            {{ data.expenseCount }}
+          </strong>
+        </mat-card-content>
+      </mat-card>
+
+
+      <mat-card>
+        <mat-card-content>
+          <span>
+            Average Expense
+          </span>
+
+          <strong>
+            {{
+              data.averageExpense
+                | currency:'USD'
+            }}
+          </strong>
+        </mat-card-content>
+      </mat-card>
+
+
+      <mat-card>
+        <mat-card-content>
+          <span>
+            Largest Expense
+          </span>
+
+          <strong>
+            {{
+              data.largestExpense
+                | currency:'USD'
+            }}
+          </strong>
+        </mat-card-content>
+      </mat-card>
+
+    </section>
+
+
+    <section class="report-grid">
+
+      <mat-card>
+
+        <mat-card-header>
+          <mat-card-title>
+            Expenses by Category
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+
+          @for (
+            category of data.categories;
+            track category.category
+          ) {
+
+            <div class="category-row">
+
+              <div>
+                <strong>
+                  {{ category.category }}
+                </strong>
+
+                <span>
+                  {{ category.count }}
+                  transactions
+                </span>
+              </div>
+
+              <strong>
+                {{
+                  category.amount
+                    | currency:'USD'
+                }}
+              </strong>
+
+            </div>
+
+          } @empty {
+
+            <p>
+              No expenses for this period.
+            </p>
+
+          }
+
+        </mat-card-content>
+
+      </mat-card>
+
+
+      <mat-card>
+
+        <mat-card-header>
+          <mat-card-title>
+            Monthly Expense Trend
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+
+          @for (
+            month of data.monthlyTrend;
+            track month.year + '-' + month.month
+          ) {
+
+            <div class="month-row">
+
+              <div class="month-label">
+                {{
+                  monthLabel(
+                    month.year,
+                    month.month
+                  )
+                }}
+              </div>
+
+              <div class="bar-container">
+                <div
+                  class="bar"
+                  [style.width.%]="
+                    barWidth(month.amount)
+                  "
+                ></div>
+              </div>
+
+              <strong>
+                {{
+                  month.amount
+                    | currency:'USD'
+                }}
+              </strong>
+
+            </div>
+
+          } @empty {
+
+            <p>
+              No monthly data available.
+            </p>
+
+          }
+
+        </mat-card-content>
+
+      </mat-card>
+
+    </section>
+
+  }
+
+</div>
