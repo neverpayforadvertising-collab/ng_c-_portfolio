@@ -42,12 +42,6 @@ builder.Services.AddCors(options =>
     );
 });
 
-
-
-    // builder.Services.AddScoped<
-    //     ICustomerRepository,
-    //     CustomerRepository>();
-
 builder.Services.AddScoped<
     ICustomerRepository,
     CustomerRepository>();
